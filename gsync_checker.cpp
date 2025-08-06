@@ -1,4 +1,5 @@
-﻿#include <stdio.h>
+﻿#if 0
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -280,7 +281,7 @@ int main(int argc, char** argv)
         printf("check help\n");
         return -1;
     }
-
+    NvAPI_Initialize();
     NvAPI_Status ret = NVAPI_OK;
     NvGSyncDeviceHandle nvGSyncHandles[NVAPI_MAX_GSYNC_DEVICES];
     NvU32 gsyncCount = 0;
@@ -309,6 +310,7 @@ int main(int argc, char** argv)
     if (stricmp(argv[index], "help") == 0)
     {
         printHelp();
+        NvAPI_Unload();
         return 0;
     }
     else if (stricmp(argv[index], "queryTopo") == 0)
@@ -400,3 +402,4 @@ int main(int argc, char** argv)
     return 0;
 }
 
+#endif
